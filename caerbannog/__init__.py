@@ -161,7 +161,7 @@ class Rabbit(object):
     def send_line(self, line, parse_response=False):
         return self.vw.send_line(line, parse_response)
 
-    def make_line(self, *, example=None, label=None, importance=None, base=None,
+    def make_line(self, example=None, label=None, importance=None, base=None,
                   tag=None, features=None, namespaces=None, no_label=False):
 
         example = copy.copy(example) or Example()
@@ -176,7 +176,7 @@ class Rabbit(object):
 
         return example.make_line(label=label, importance=importance, base=base, tag=tag)
 
-    def teach(self, *, example=None, label=None, importance=None, base=None, tag=None, 
+    def teach(self, example=None, label=None, importance=None, base=None, tag=None, 
               features=None, namespaces=None):
         line = self.make_line(example=example, label=label, importance=importance,
                               tag=tag, features=features, namespaces=namespaces)
@@ -185,7 +185,7 @@ class Rabbit(object):
     def _get_prediction_for_line(self, line):
         return self._result_factory(self.send_line(line, True))
 
-    def predict(self, *, example=None, base=None, tag=None,
+    def predict(self, example=None, base=None, tag=None,
                 features=None, namespaces=None):
 
         line = self.make_line(example=example, no_label=True,
